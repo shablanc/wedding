@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, user-scalable=yes">
+<meta name="format-detection" content="telephone=no">
+<meta property="og:title" content="최현열 ♡ 김지현 결혼합니다">
+<meta property="og:description" content="2026년 8월 22일 토요일 · 삼산월드컨벤션센터">
+<title>최현열 ♡ 김지현</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --cream:  #faf6f0;
+  --warm:   #f0e6d8;
+  --blush:  #e8d4c2;
+  --rose:   #c4957a;
+  --deep:   #7a4f38;
+  --text:   #3a2a1e;
+  --muted:  #8a7060;
+  --white:  #ffffff;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--text);
+  font-family: 'Gowun Batang', serif;
+  font-weight: 400;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── HERO PHOTO (전체화면 사진) ── */
+.hero-photo {
+  height: 100dvh;
+  position: relative;
+  overflow: hidden;
+  background: #c9b8a8;
+}
+
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.hero-photo-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(160deg, #d8c8b8 0%, #c4a890 50%, #b09070 100%);
+}
+
+.photo-placeholder-icon {
+  font-size: 48px;
+  opacity: 0.4;
+}
+
+.photo-placeholder-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+}
+
+.photo-guide {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  animation: fadeIn 1.2s ease 1.5s forwards;
+}
+
+.hero-scroll-hint span {
+  font-family: 'Playfair Display', serif;
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  color: rgba(255,255,255,0.65);
+  text-transform: uppercase;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
+  animation: scrollPulse 2s ease infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50%       { opacity: 1;   transform: scaleY(1.15); }
+}
+
+/* ── HERO NAMES (스크롤 후 등장) ── */
+.hero-names-section {
+  background: var(--white);
+  text-align: center;
+  padding: 64px 32px 56px;
+  border-bottom: 0.5px solid var(--blush);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-names-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(196,149,122,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  font-family: 'Playfair Display', serif;
+  font-size: 10px;
+  font-style: italic;
+  letter-spacing: 0.3em;
+  color: var(--rose);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.2s forwards;
+}
+
+.hero-names {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 11vw, 68px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.1;
+  color: var(--deep);
+  letter-spacing: 0.01em;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.4s forwards;
+}
+
+.hero-names .amp {
+  display: block;
+  font-size: 0.5em;
+  font-style: normal;
+  color: var(--rose);
+  letter-spacing: 0.2em;
+  margin: 10px 0;
+  font-weight: 400;
+}
+
+.hero-deco {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 32px auto;
+  width: 220px;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.6s forwards;
+}
+
+.hero-deco::before, .hero-deco::after {
+  content: '';
+  flex: 1;
+  height: 0.5px;
+  background: linear-gradient(90deg, transparent, var(--blush), transparent);
+}
+
+.hero-deco span {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  color: var(--rose);
+  font-style: italic;
+}
+
+.hero-date-block {
+  font-family: 'Gowun Batang', serif;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 2.2;
+  letter-spacing: 0.05em;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.8s forwards;
+}
+
+.hero-date-block .date-en {
+  font-family: 'Playfair Display', serif;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--rose);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* 기존 .hero, .petal 등 제거 후 신규 스타일 */
+.petal { display: none; }
+
+/* ── SECTIONS ── */
+section {
+  padding: 64px 24px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.section-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 10px;
+  font-style: italic;
+  letter-spacing: 0.4em;
+  color: var(--rose);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.section-label::before, .section-label::after {
+  content: ''; flex: 1; height: 0.5px; background: var(--blush);
+}
+
+/* ── COUNTDOWN ── */
+.countdown-wrap {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 36px 24px;
+  text-align: center;
+  border: 0.5px solid var(--blush);
+  position: relative;
+  overflow: hidden;
+}
+.countdown-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(196,149,122,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.countdown-msg { font-size: 13px; color: var(--muted); margin-bottom: 24px; letter-spacing: 0.05em; font-family: 'Gowun Batang', serif; }
+.countdown-grid { display: flex; justify-content: center; gap: 0; }
+.count-item { flex: 1; max-width: 80px; padding: 0 6px; position: relative; }
+.count-item + .count-item::before {
+  content: ':';
+  position: absolute;
+  left: -2px;
+  top: 50%;
+  transform: translateY(-60%);
+  font-size: 24px;
+  color: var(--blush);
+  font-family: 'Playfair Display', serif;
+}
+.count-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 400;
+  color: var(--deep);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.count-lbl {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  color: var(--muted);
+  margin-top: 6px;
+  text-transform: uppercase;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+}
+.wedding-done {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: var(--rose);
+  font-style: italic;
+}
+
+/* ── INVITE ── */
+.invite-text {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 2.4;
+  text-align: center;
+  white-space: pre-line;
+  font-family: 'Gowun Batang', serif;
+}
+
+/* ── FAMILY ── */
+.family-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  align-items: start;
+}
+.family-divider { background: var(--blush); min-height: 80px; }
+.family-side { text-align: center; padding: 0 16px; }
+.family-side h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 11px;
+  font-style: italic;
+  letter-spacing: 0.25em;
+  color: var(--rose);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+.family-person { margin-bottom: 14px; }
+.family-person .role {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  margin-bottom: 2px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 300;
+}
+.family-person .name { font-size: 15px; color: var(--text); font-weight: 400; }
+
+/* ── CONTACT ── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.contact-card {
+  background: var(--white);
+  border: 0.5px solid var(--blush);
+  border-radius: 12px;
+  padding: 18px 14px;
+  text-align: center;
+}
+.contact-card .role {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--rose);
+  text-transform: uppercase;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  margin-bottom: 6px;
+}
+.contact-card .cname { font-size: 15px; color: var(--text); margin-bottom: 12px; font-weight: 400; }
+.contact-btns { display: flex; gap: 8px; justify-content: center; }
+.btn-call, .btn-sms {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 7px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 300;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  letter-spacing: 0.05em;
+  border: none;
+  cursor: pointer;
+}
+.btn-call { background: var(--rose); color: var(--white); }
+.btn-call:hover { background: var(--deep); }
+.btn-sms { background: var(--warm); color: var(--deep); border: 0.5px solid var(--blush); }
+.btn-sms:hover { background: var(--blush); }
+
+/* ── MAP ── */
+.map-section { padding: 0; max-width: none; }
+.map-inner { max-width: 480px; margin: 0 auto; padding: 64px 24px; }
+.map-container {
+  width: 100%;
+  height: 260px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 0.5px solid var(--blush);
+  margin: 24px 0;
+  background: #e8e0d8;
+  position: relative;
+}
+#kakaoMap { width: 100%; height: 100%; }
+.map-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  background: #ede6dc;
+}
+.venue-info { text-align: center; margin-bottom: 24px; }
+.venue-name { font-size: 18px; color: var(--deep); font-weight: 400; margin-bottom: 4px; font-family: 'Gowun Batang', serif; }
+.venue-addr { font-size: 13px; color: var(--muted); line-height: 1.8; font-family: 'Gowun Batang', serif; }
+
+.map-nav-btns { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+.nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 8px;
+  border: 0.5px solid var(--blush);
+  border-radius: 10px;
+  font-size: 12px;
+  color: var(--text);
+  text-decoration: none;
+  background: var(--white);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 300;
+  transition: all 0.2s;
+}
+.nav-btn:hover { background: var(--warm); border-color: var(--rose); }
+
+.transport-accordion { margin-top: 8px; }
+.transport-item {
+  border: 0.5px solid var(--blush);
+  border-radius: 10px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  background: var(--white);
+}
+.transport-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 300;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.transport-header .arrow { margin-left: auto; font-size: 10px; color: var(--muted); transition: transform 0.3s; }
+.transport-item.open .arrow { transform: rotate(180deg); }
+.transport-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+.transport-item.open .transport-body { max-height: 400px; }
+.transport-content {
+  padding: 0 16px 16px;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 2;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 300;
+  white-space: pre-line;
+  border-top: 0.5px solid var(--warm);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--warm);
+  text-align: center;
+  padding: 56px 24px 48px;
+  position: relative;
+  overflow: hidden;
+}
+footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 100%, rgba(196,149,122,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.footer-names {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--deep);
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+.footer-date { font-size: 12px; color: var(--muted); letter-spacing: 0.15em; font-family: 'Playfair Display', serif; margin-bottom: 32px; }
+.footer-heart { font-size: 20px; color: var(--rose); display: block; margin: 16px 0; animation: heartbeat 2s ease infinite; }
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14%       { transform: scale(1.15); }
+  28%       { transform: scale(1); }
+  42%       { transform: scale(1.1); }
+  56%       { transform: scale(1); }
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 360px) {
+  .hero-names { font-size: 38px; }
+  .count-num  { font-size: 36px; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .map-nav-btns { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO: 전체화면 웨딩사진 -->
+<div class="hero-photo" aria-label="웨딩사진">
+  <!--
+    ★ 웨딩사진 넣는 방법:
+       1. 사진 파일(예: wedding.jpg)을 index.html과 같은 폴더에 저장
+       2. 아래 img 태그의 주석을 해제하고 src 경로를 파일명으로 변경
+       3. photo-placeholder div는 삭제하거나 주석 처리
+
+    <img src="wedding.jpg" alt="최현열 김지현 웨딩사진">
+  -->
+  <div class="hero-photo-placeholder">
+    <span class="photo-placeholder-icon">📷</span>
+    <span class="photo-placeholder-text">Wedding Photo</span>
+    <span class="photo-guide">wedding.jpg 파일을<br>같은 폴더에 넣고<br>img 태그 주석 해제</span>
+  </div>
+
+  <div class="hero-scroll-hint" aria-hidden="true">
+    <span>scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</div>
+
+<!-- HERO: 스크롤 후 이름 등장 -->
+<div class="hero-names-section">
+  <p class="hero-eyebrow">We are getting married</p>
+  <h1 class="hero-names">
+    최현열
+    <span class="amp">♡</span>
+    김지현
+  </h1>
+  <div class="hero-deco"><span>✦</span></div>
+  <div class="hero-date-block">
+    <span class="date-en">2026 · 08 · 22 · Sat</span>
+    2026년 8월 22일 토요일<br>
+    오후 12시 10분<br>
+    삼산월드컨벤션센터
+  </div>
+</div>
+
+<!-- D-DAY -->
+<section aria-label="디데이 카운트다운">
+  <div class="section-label">D - Day</div>
+  <div class="countdown-wrap reveal">
+    <p class="countdown-msg">결혼식까지</p>
+    <div class="countdown-grid" id="countdown">
+      <div class="count-item"><div class="count-num" id="cd-days">--</div><div class="count-lbl">Days</div></div>
+      <div class="count-item"><div class="count-num" id="cd-hours">--</div><div class="count-lbl">Hours</div></div>
+      <div class="count-item"><div class="count-num" id="cd-mins">--</div><div class="count-lbl">Mins</div></div>
+      <div class="count-item"><div class="count-num" id="cd-secs">--</div><div class="count-lbl">Secs</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INVITE -->
+<section aria-label="초대 문구">
+  <div class="section-label">Invitation</div>
+  <div class="reveal">
+    <p class="invite-text">직접 찾아뵙고 인사를 드리는 것이 도리이나,
+서면으로 대신하게 되어 죄송하고 아쉬운 마음입니다.
+
+함께해 주신다면 더없는 기쁨이겠지만,
+혹 참석이 어려우시더라도 멀리서 보내주시는
+따뜻한 축복만으로도 저희에겐 큰 힘과 격려가 됩니다.
+
+그 마음 잊지 않고 예쁘게 살겠습니다.</p>
+  </div>
+</section>
+
+<!-- FAMILY -->
+<section aria-label="혼주">
+  <div class="section-label">혼주</div>
+  <div class="family-wrap reveal">
+    <div class="family-side">
+      <h4>신랑측</h4>
+      <div class="family-person">
+        <div class="role">아버지</div>
+        <div class="name">최동철</div>
+      </div>
+      <div class="family-person">
+        <div class="role">어머니</div>
+        <div class="name">조헌숙</div>
+      </div>
+      <div class="family-person">
+        <div class="role">장남</div>
+        <div class="name">최현열</div>
+      </div>
+    </div>
+    <div class="family-divider"></div>
+    <div class="family-side">
+      <h4>신부측</h4>
+      <div class="family-person">
+        <div class="role">아버지</div>
+        <div class="name">김문환</div>
+      </div>
+      <div class="family-person">
+        <div class="role">어머니</div>
+        <div class="name">김일순</div>
+      </div>
+      <div class="family-person">
+        <div class="role">장녀</div>
+        <div class="name">김지현</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section aria-label="연락처">
+  <div class="section-label">Contact</div>
+  <div class="contact-grid reveal">
+    <div class="contact-card">
+      <div class="role">신랑</div>
+      <div class="cname">최현열</div>
+      <div class="contact-btns">
+        <a class="btn-call" href="tel:01028061591">📞 전화</a>
+        <a class="btn-sms"  href="sms:01028061591">💬 문자</a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="role">신부</div>
+      <div class="cname">김지현</div>
+      <div class="contact-btns">
+        <a class="btn-call" href="tel:01044458993">📞 전화</a>
+        <a class="btn-sms"  href="sms:01044458993">💬 문자</a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="role">신랑 아버지</div>
+      <div class="cname">최동철</div>
+      <div class="contact-btns">
+        <a class="btn-call" href="tel:01035121591">📞 전화</a>
+        <a class="btn-sms"  href="sms:01035121591">💬 문자</a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="role">신랑 어머니</div>
+      <div class="cname">조헌숙</div>
+      <div class="contact-btns">
+        <a class="btn-call" href="tel:01068661591">📞 전화</a>
+        <a class="btn-sms"  href="sms:01068661591">💬 문자</a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="role">신부 아버지</div>
+      <div class="cname">김문환</div>
+      <div class="contact-btns">
+        <a class="btn-call" href="tel:01045356954">📞 전화</a>
+        <a class="btn-sms"  href="sms:01045356954">💬 문자</a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="role">신부 어머니</div>
+      <div class="cname">김일순</div>
+      <div class="contact-btns">
+        <a class="btn-call" href="tel:01093684434">📞 전화</a>
+        <a class="btn-sms"  href="sms:01093684434">💬 문자</a>
+      </div>
+    </div>
+  </div>
+  <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:16px;font-family:'Noto Sans KR',sans-serif;font-weight:300;line-height:1.8;">
+  </p>
+</section>
+
+<!-- MAP -->
+<div class="map-section">
+<div class="map-inner">
+  <div class="section-label">오시는 길</div>
+  <div class="venue-info reveal">
+    <div class="venue-name">삼산월드컨벤션센터</div>
+    <div class="venue-addr">인천 부평구 체육관로 60</div>
+  </div>
+
+  <div class="map-container reveal">
+    <div id="kakaoMap"></div>
+    <div class="map-placeholder" id="mapPlaceholder">
+      <span style="font-size:28px">📍</span>
+      <span>삼산월드컨벤션센터</span>
+    </div>
+  </div>
+
+  <div class="map-nav-btns reveal">
+    <a class="nav-btn" href="https://map.kakao.com/link/search/삼산월드컨벤션센터" target="_blank">
+      <span style="font-size:18px">🗺</span> 카카오지도
+    </a>
+    <a class="nav-btn" href="tmap://route?goalname=삼산월드컨벤션센터&goalx=126.7214&goaly=37.5078" target="_blank">
+      <span style="font-size:18px">🧭</span> 티맵
+    </a>
+    <a class="nav-btn" href="nmap://route/public?dlat=37.5078&dlng=126.7214&dname=삼산월드컨벤션센터&appname=wedding" target="_blank">
+      <span style="font-size:18px">🗺</span> 네이버지도
+    </a>
+  </div>
+
+  <div class="transport-accordion reveal">
+    <div class="transport-item">
+      <div class="transport-header" onclick="toggleAccordion(this)">
+        <span>🚇</span> 지하철
+        <span class="arrow">▼</span>
+      </div>
+      <div class="transport-body">
+        <div class="transport-content">인천 1호선 — 부평삼거리역 하차
+1번 출구에서 도보 5분</div>
+      </div>
+    </div>
+    <div class="transport-item">
+      <div class="transport-header" onclick="toggleAccordion(this)">
+        <span>🚌</span> 버스
+        <span class="arrow">▼</span>
+      </div>
+      <div class="transport-body">
+        <div class="transport-content">삼산월드체육관 정류장 하차
+인천 버스 — 해당 지역 버스 노선 확인 후 탑승</div>
+      </div>
+    </div>
+    <div class="transport-item">
+      <div class="transport-header" onclick="toggleAccordion(this)">
+        <span>🚗</span> 자차
+        <span class="arrow">▼</span>
+      </div>
+      <div class="transport-body">
+        <div class="transport-content">내비게이션에 "삼산월드컨벤션센터" 또는
+"인천 부평구 체육관로 60" 입력
+
+※ 주차장 이용 가능 (혼잡 예상, 대중교통 권장)</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-heart">♡</span>
+  <div class="footer-names">최현열 & 김지현</div>
+  <div class="footer-date">2026 · 08 · 22 · SAT</div>
+  <p style="font-size:12px;color:var(--muted);letter-spacing:0.05em;line-height:2;font-family:'Noto Sans KR',sans-serif;font-weight:300;">
+    삼산월드컨벤션센터<br>
+    오후 12시 10분
+  </p>
+</footer>
+
+<!--
+  ─────────────────────────────────────────
+  카카오맵 연동 안내
+  1. https://developers.kakao.com 에서 앱 생성
+  2. JavaScript 키 발급 (무료)
+  3. 아래 YOUR_KAKAO_APP_KEY 를 발급받은 키로 교체
+  ─────────────────────────────────────────
+-->
+<script>
+// ── D-DAY COUNTDOWN ──
+(function() {
+  var target = new Date('2026-08-22T12:10:00');
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function tick() {
+    var now  = new Date();
+    var diff = target - now;
+    if (diff <= 0) {
+      document.getElementById('countdown').innerHTML =
+        '<p class="wedding-done">🎊 오늘이 그날입니다!</p>';
+      return;
+    }
+    var days  = Math.floor(diff / 86400000);
+    var hours = Math.floor((diff % 86400000) / 3600000);
+    var mins  = Math.floor((diff % 3600000)  / 60000);
+    var secs  = Math.floor((diff % 60000)    / 1000);
+    document.getElementById('cd-days').textContent  = days;
+    document.getElementById('cd-hours').textContent = pad(hours);
+    document.getElementById('cd-mins').textContent  = pad(mins);
+    document.getElementById('cd-secs').textContent  = pad(secs);
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+// ── SCROLL REVEAL ──
+(function() {
+  var els = document.querySelectorAll('.reveal');
+  var io  = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(function(el) { io.observe(el); });
+})();
+
+// ── ACCORDION ──
+function toggleAccordion(header) {
+  header.parentElement.classList.toggle('open');
+}
+
+// ── KAKAO MAP ──
+var KAKAO_KEY = 'YOUR_KAKAO_APP_KEY';
+
+function initKakaoMap() {
+  if (!window.kakao || !window.kakao.maps) return;
+  var el  = document.getElementById('kakaoMap');
+  var ph  = document.getElementById('mapPlaceholder');
+  ph.style.display = 'none';
+  var lat = 37.5078, lng = 126.7214;
+  var map = new kakao.maps.Map(el, {
+    center: new kakao.maps.LatLng(lat, lng),
+    level: 3
+  });
+  var marker = new kakao.maps.Marker({ position: new kakao.maps.LatLng(lat, lng) });
+  marker.setMap(map);
+  var iw = new kakao.maps.InfoWindow({
+    content: '<div style="padding:8px 12px;font-size:13px;font-family:\'Noto Sans KR\',sans-serif;">삼산월드컨벤션센터</div>'
+  });
+  iw.open(map, marker);
+}
+
+if (KAKAO_KEY !== 'YOUR_KAKAO_APP_KEY') {
+  var s = document.createElement('script');
+  s.src = 'https://dapi.kakao.com/v2/maps/sdk.js?appkey=' + KAKAO_KEY + '&autoload=false';
+  s.onload = function() { kakao.maps.load(initKakaoMap); };
+  document.head.appendChild(s);
+}
+</script>
+</body>
+</html>
