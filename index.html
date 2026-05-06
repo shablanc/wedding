@@ -871,6 +871,8 @@ function toggleAccordion(header) {
 
 // ── BGM ──
 var bgmPlaying = false;
+var bgmStarted = false;
+
 function toggleBgm() {
   var audio = document.getElementById('bgm');
   var btn   = document.getElementById('bgm-btn');
@@ -885,6 +887,27 @@ function toggleBgm() {
     btn.innerHTML = '⏸';
     bgmPlaying = true;
   }
+}
+
+// 이름 섹션 도달 시 자동 재생
+var namesSection = document.querySelector('.hero-names-section');
+if (namesSection) {
+  var bgmObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting && !bgmStarted) {
+        bgmStarted = true;
+        var audio = document.getElementById('bgm');
+        var btn   = document.getElementById('bgm-btn');
+        audio.play().then(function() {
+          bgmPlaying = true;
+          btn.style.background = 'var(--deep)';
+          btn.innerHTML = '⏸';
+        }).catch(function(){});
+        bgmObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+  bgmObserver.observe(namesSection);
 }
 </script>
 </body>
