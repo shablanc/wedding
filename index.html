@@ -692,11 +692,16 @@ footer::before {
   </div>
 
   <div class="map-container reveal">
-    <div id="kakaoMap"></div>
-    <div class="map-placeholder" id="mapPlaceholder">
-      <span style="font-size:28px">📍</span>
-      <span>삼산월드컨벤션센터</span>
-    </div>
+    <a href="https://map.kakao.com/link/search/삼산월드컨벤션센터" target="_blank" style="display:block;width:100%;height:100%;">
+      <iframe
+        src="https://maps.google.com/maps?q=37.5078,126.7214&z=16&output=embed"
+        width="100%" height="100%"
+        style="border:0;display:block;"
+        allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="삼산월드컨벤션센터 위치">
+      </iframe>
+    </a>
   </div>
 
   <div class="map-nav-btns reveal">
@@ -714,22 +719,51 @@ footer::before {
   <div class="transport-accordion reveal">
     <div class="transport-item">
       <div class="transport-header" onclick="toggleAccordion(this)">
+        <span>🚄</span> KTX / 기차 (경상도에서)
+        <span class="arrow">▼</span>
+      </div>
+      <div class="transport-body">
+        <div class="transport-content">부산·울산·경남에서 오시는 분
+KTX 부산역 → 서울역 (약 2시간 30분)
+
+대구·경북에서 오시는 분
+KTX 동대구역 → 서울역 (약 1시간 40분)
+
+서울역 도착 후 →
+수도권 전철 1호선 (인천 방면) 탑승
+→ 부평역 하차 (약 40분)
+→ 인천 1호선 환승 → 부평삼거리역 하차
+→ 도보 5분 또는 택시 3분</div>
+      </div>
+    </div>
+    <div class="transport-item">
+      <div class="transport-header" onclick="toggleAccordion(this)">
         <span>🚇</span> 지하철
         <span class="arrow">▼</span>
       </div>
       <div class="transport-body">
         <div class="transport-content">인천 1호선 — 부평삼거리역 하차
-1번 출구에서 도보 5분</div>
+1번 출구에서 도보 약 5분
+
+또는 7호선 — 삼산체육관역 하차
+도보 약 8분</div>
       </div>
     </div>
     <div class="transport-item">
       <div class="transport-header" onclick="toggleAccordion(this)">
-        <span>🚌</span> 버스
+        <span>🚌</span> 버스 (고속버스)
         <span class="arrow">▼</span>
       </div>
       <div class="transport-body">
-        <div class="transport-content">삼산월드체육관 정류장 하차
-인천 버스 — 해당 지역 버스 노선 확인 후 탑승</div>
+        <div class="transport-content">부산·경남에서 오시는 분
+부산 → 인천 고속버스 (인천종합터미널 하차)
+인천터미널에서 버스 87번 탑승
+→ 삼산월드체육관 정류장 하차
+
+대구·경북에서 오시는 분
+대구 → 부평 고속버스 이용 시
+부평역 하차 후 인천 1호선 환승
+→ 부평삼거리역 도보 5분</div>
       </div>
     </div>
     <div class="transport-item">
@@ -738,10 +772,20 @@ footer::before {
         <span class="arrow">▼</span>
       </div>
       <div class="transport-body">
-        <div class="transport-content">내비게이션에 "삼산월드컨벤션센터" 또는
-"인천 부평구 체육관로 60" 입력
+        <div class="transport-content">부산·경남에서 오시는 분
+경부고속도로 → 서울외곽순환고속도로
+→ 인천방면 → 부평IC 진출
+→ 삼산월드컨벤션센터 (약 4~5시간)
 
-※ 주차장 이용 가능 (혼잡 예상, 대중교통 권장)</div>
+대구·경북에서 오시는 분
+경부고속도로 → 서울외곽순환고속도로
+→ 인천방면 → 부평IC 진출
+→ 삼산월드컨벤션센터 (약 3~4시간)
+
+내비게이션: "삼산월드컨벤션센터" 입력
+
+※ 주차 2시간 무료
+※ 주말 혼잡 예상 — 여유 있게 출발 권장</div>
       </div>
     </div>
   </div>
@@ -759,14 +803,29 @@ footer::before {
   </p>
 </footer>
 
+<!-- BGM 플레이어 -->
+<div id="bgm-btn" onclick="toggleBgm()" title="BGM 재생/정지" style="
+  position:fixed; bottom:28px; right:20px; z-index:999;
+  width:48px; height:48px; border-radius:50%;
+  background:var(--rose); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  font-size:20px; cursor:pointer;
+  box-shadow: 0 4px 16px rgba(176,120,88,0.35);
+  transition: transform 0.2s, background 0.2s;
+" aria-label="BGM 재생">
+  🎵
+</div>
+<audio id="bgm" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
 <!--
-  ─────────────────────────────────────────
-  카카오맵 연동 안내
-  1. https://developers.kakao.com 에서 앱 생성
-  2. JavaScript 키 발급 (무료)
-  3. 아래 YOUR_KAKAO_APP_KEY 를 발급받은 키로 교체
-  ─────────────────────────────────────────
+  ★ BGM 교체 방법:
+  1. mp3 파일(예: bgm.mp3)을 index.html과 같은 폴더에 업로드
+  2. 위 source src를 "bgm.mp3"로 변경
+  추천 무료 BGM: bensound.com 에서 romantic 카테고리 다운로드
 -->
+
 <script>
 // ── D-DAY COUNTDOWN ──
 (function() {
@@ -809,32 +868,22 @@ function toggleAccordion(header) {
   header.parentElement.classList.toggle('open');
 }
 
-// ── KAKAO MAP ──
-var KAKAO_KEY = 'YOUR_KAKAO_APP_KEY';
-
-function initKakaoMap() {
-  if (!window.kakao || !window.kakao.maps) return;
-  var el  = document.getElementById('kakaoMap');
-  var ph  = document.getElementById('mapPlaceholder');
-  ph.style.display = 'none';
-  var lat = 37.5078, lng = 126.7214;
-  var map = new kakao.maps.Map(el, {
-    center: new kakao.maps.LatLng(lat, lng),
-    level: 3
-  });
-  var marker = new kakao.maps.Marker({ position: new kakao.maps.LatLng(lat, lng) });
-  marker.setMap(map);
-  var iw = new kakao.maps.InfoWindow({
-    content: '<div style="padding:8px 12px;font-size:13px;font-family:\'Noto Sans KR\',sans-serif;">삼산월드컨벤션센터</div>'
-  });
-  iw.open(map, marker);
-}
-
-if (KAKAO_KEY !== 'YOUR_KAKAO_APP_KEY') {
-  var s = document.createElement('script');
-  s.src = 'https://dapi.kakao.com/v2/maps/sdk.js?appkey=' + KAKAO_KEY + '&autoload=false';
-  s.onload = function() { kakao.maps.load(initKakaoMap); };
-  document.head.appendChild(s);
+// ── BGM ──
+var bgmPlaying = false;
+function toggleBgm() {
+  var audio = document.getElementById('bgm');
+  var btn   = document.getElementById('bgm-btn');
+  if (bgmPlaying) {
+    audio.pause();
+    btn.style.background = 'var(--rose)';
+    btn.innerHTML = '🎵';
+    bgmPlaying = false;
+  } else {
+    audio.play().catch(function(){});
+    btn.style.background = 'var(--deep)';
+    btn.innerHTML = '⏸';
+    bgmPlaying = true;
+  }
 }
 </script>
 </body>
