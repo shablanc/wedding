@@ -17,10 +17,10 @@
   --cream:  #faf6f0;
   --warm:   #f0e6d8;
   --blush:  #e8d4c2;
-  --rose:   #c4957a;
-  --deep:   #7a4f38;
-  --text:   #3a2a1e;
-  --muted:  #8a7060;
+  --rose:   #b07858;
+  --deep:   #4a2e1c;
+  --text:   #2a1a0e;
+  --muted:  #5a3e2e;
   --white:  #ffffff;
 }
 
@@ -31,7 +31,7 @@ body {
   background: var(--cream);
   color: var(--text);
   font-family: 'Gowun Batang', serif;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.8;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -138,8 +138,9 @@ body {
 
 .hero-eyebrow {
   font-family: 'Playfair Display', serif;
-  font-size: 10px;
+  font-size: 13px;
   font-style: italic;
+  font-weight: 500;
   letter-spacing: 0.3em;
   color: var(--rose);
   text-transform: uppercase;
@@ -150,8 +151,8 @@ body {
 
 .hero-names {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(42px, 11vw, 68px);
-  font-weight: 400;
+  font-size: clamp(48px, 13vw, 76px);
+  font-weight: 500;
   font-style: italic;
   line-height: 1.1;
   color: var(--deep);
@@ -196,8 +197,9 @@ body {
 
 .hero-date-block {
   font-family: 'Gowun Batang', serif;
-  font-size: 14px;
-  color: var(--muted);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
   line-height: 2.2;
   letter-spacing: 0.05em;
   opacity: 0;
@@ -206,7 +208,8 @@ body {
 
 .hero-date-block .date-en {
   font-family: 'Playfair Display', serif;
-  font-size: 11px;
+  font-size: 13px;
+  font-weight: 500;
   letter-spacing: 0.3em;
   color: var(--rose);
   text-transform: uppercase;
@@ -225,8 +228,9 @@ section {
 }
 .section-label {
   font-family: 'Playfair Display', serif;
-  font-size: 10px;
+  font-size: 13px;
   font-style: italic;
+  font-weight: 500;
   letter-spacing: 0.4em;
   color: var(--rose);
   text-transform: uppercase;
@@ -257,7 +261,7 @@ section {
   background: radial-gradient(ellipse at 50% 0%, rgba(196,149,122,0.07) 0%, transparent 70%);
   pointer-events: none;
 }
-.countdown-msg { font-size: 13px; color: var(--muted); margin-bottom: 24px; letter-spacing: 0.05em; font-family: 'Gowun Batang', serif; }
+.countdown-msg { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 24px; letter-spacing: 0.05em; font-family: 'Gowun Batang', serif; }
 .countdown-grid { display: flex; justify-content: center; gap: 0; }
 .count-item { flex: 1; max-width: 80px; padding: 0 6px; position: relative; }
 .count-item + .count-item::before {
@@ -266,23 +270,24 @@ section {
   left: -2px;
   top: 50%;
   transform: translateY(-60%);
-  font-size: 24px;
-  color: var(--blush);
+  font-size: 28px;
+  color: var(--rose);
   font-family: 'Playfair Display', serif;
 }
 .count-num {
   font-family: 'Playfair Display', serif;
-  font-size: 48px;
-  font-weight: 400;
+  font-size: 52px;
+  font-weight: 500;
   color: var(--deep);
   line-height: 1;
   letter-spacing: -0.02em;
 }
 .count-lbl {
-  font-size: 9px;
+  font-size: 11px;
+  font-weight: 500;
   letter-spacing: 0.25em;
-  color: var(--muted);
-  margin-top: 6px;
+  color: var(--rose);
+  margin-top: 8px;
   text-transform: uppercase;
   font-family: 'Playfair Display', serif;
   font-style: italic;
@@ -296,8 +301,9 @@ section {
 
 /* ── INVITE ── */
 .invite-text {
-  font-size: 15px;
-  color: var(--muted);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
   line-height: 2.4;
   text-align: center;
   white-space: pre-line;
@@ -323,14 +329,14 @@ section {
 }
 .family-person { margin-bottom: 14px; }
 .family-person .role {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--muted);
   letter-spacing: 0.1em;
   margin-bottom: 2px;
   font-family: 'Noto Sans KR', sans-serif;
-  font-weight: 300;
+  font-weight: 400;
 }
-.family-person .name { font-size: 15px; color: var(--text); font-weight: 400; }
+.family-person .name { font-size: 18px; color: var(--text); font-weight: 700; }
 
 /* ── CONTACT ── */
 .contact-grid {
@@ -354,7 +360,7 @@ section {
   font-style: italic;
   margin-bottom: 6px;
 }
-.contact-card .cname { font-size: 15px; color: var(--text); margin-bottom: 12px; font-weight: 400; }
+.contact-card .cname { font-size: 18px; color: var(--text); margin-bottom: 12px; font-weight: 700; }
 .contact-btns { display: flex; gap: 8px; justify-content: center; }
 .btn-call, .btn-sms {
   display: flex;
@@ -404,8 +410,8 @@ section {
   background: #ede6dc;
 }
 .venue-info { text-align: center; margin-bottom: 24px; }
-.venue-name { font-size: 18px; color: var(--deep); font-weight: 400; margin-bottom: 4px; font-family: 'Gowun Batang', serif; }
-.venue-addr { font-size: 13px; color: var(--muted); line-height: 1.8; font-family: 'Gowun Batang', serif; }
+.venue-name { font-size: 22px; color: var(--deep); font-weight: 700; margin-bottom: 6px; font-family: 'Gowun Batang', serif; }
+.venue-addr { font-size: 15px; color: var(--text); line-height: 1.8; font-family: 'Gowun Batang', serif; font-weight: 700; }
 
 .map-nav-btns { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 16px; }
 .nav-btn {
@@ -479,14 +485,14 @@ footer::before {
 }
 .footer-names {
   font-family: 'Playfair Display', serif;
-  font-size: 30px;
-  font-weight: 400;
+  font-size: 34px;
+  font-weight: 500;
   font-style: italic;
   color: var(--deep);
   letter-spacing: 0.04em;
   margin-bottom: 8px;
 }
-.footer-date { font-size: 12px; color: var(--muted); letter-spacing: 0.15em; font-family: 'Playfair Display', serif; margin-bottom: 32px; }
+.footer-date { font-size: 14px; color: var(--rose); letter-spacing: 0.15em; font-family: 'Playfair Display', serif; font-weight: 500; margin-bottom: 32px; }
 .footer-heart { font-size: 20px; color: var(--rose); display: block; margin: 16px 0; animation: heartbeat 2s ease infinite; }
 @keyframes heartbeat {
   0%, 100% { transform: scale(1); }
