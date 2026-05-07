@@ -263,17 +263,20 @@ section {
   pointer-events: none;
 }
 .countdown-msg { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 24px; letter-spacing: 0.05em; font-family: 'Gowun Batang', serif; }
-.countdown-grid { display: flex; justify-content: center; gap: 0; }
-.count-item { flex: 1; max-width: 80px; padding: 0 12px; position: relative; }
-.count-item + .count-item::before {
-  content: ':';
-  position: absolute;
-  left: -6px;
-  top: 50%;
-  transform: translateY(-60%);
-  font-size: 28px;
-  color: var(--rose);
+.countdown-grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0;
+}
+.count-item { text-align: center; padding: 0 8px; }
+.count-sep {
   font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  color: var(--rose);
+  line-height: 1;
+  padding-top: 4px;
+  opacity: 0.7;
 }
 .count-num {
   font-family: 'Playfair Display', serif;
@@ -477,7 +480,7 @@ section {
 }
 .gallery-item {
   aspect-ratio: 1;
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
   background: var(--warm);
@@ -486,10 +489,16 @@ section {
 .gallery-item img {
   width: 100%; height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: transform 0.4s ease, filter 0.4s ease;
   display: block;
+  filter: blur(8px);
+  transform: scale(1.05);
 }
-.gallery-item:hover img { transform: scale(1.05); }
+.gallery-item img.loaded {
+  filter: blur(0);
+  transform: scale(1);
+}
+.gallery-item:hover img.loaded { transform: scale(1.05); }
 .gallery-placeholder {
   width: 100%; height: 100%;
   display: flex; flex-direction: column;
@@ -692,8 +701,11 @@ footer::before {
     <p class="countdown-msg">결혼식까지</p>
     <div class="countdown-grid" id="countdown">
       <div class="count-item"><div class="count-num" id="cd-days">--</div><div class="count-lbl">Days</div></div>
+      <span class="count-sep">:</span>
       <div class="count-item"><div class="count-num" id="cd-hours">--</div><div class="count-lbl">Hours</div></div>
+      <span class="count-sep">:</span>
       <div class="count-item"><div class="count-num" id="cd-mins">--</div><div class="count-lbl">Mins</div></div>
+      <span class="count-sep">:</span>
       <div class="count-item"><div class="count-num" id="cd-secs">--</div><div class="count-lbl">Secs</div></div>
     </div>
   </div>
@@ -923,24 +935,24 @@ KTX 동대구역 → 서울역 (약 1시간 40분)
 <section aria-label="갤러리">
   <div class="section-label">Gallery</div>
   <div class="gallery-grid reveal" id="galleryGrid">
-    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J05851-.jpg" alt="웨딩사진1"></div>
-    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J06114-.jpg" alt="웨딩사진2"></div>
-    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J06558-.jpg" alt="웨딩사진3"></div>
-    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J06601-.jpg" alt="웨딩사진4"></div>
-    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J06971-.jpg" alt="웨딩사진5"></div>
-    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J07125-.jpg" alt="웨딩사진6"></div>
-    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J07282-.jpg" alt="웨딩사진7"></div>
-    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J07499-.jpg" alt="웨딩사진8"></div>
-    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J07686-.jpg" alt="웨딩사진9"></div>
-    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J07795-.jpg" alt="웨딩사진10"></div>
-    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J07915-.jpg" alt="웨딩사진11"></div>
-    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J07947-.jpg" alt="웨딩사진12"></div>
-    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J08238-.jpg" alt="웨딩사진13"></div>
-    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J08261-.jpg" alt="웨딩사진14"></div>
-    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J08325-.jpg" alt="웨딩사진15"></div>
-    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J08418-.jpg" alt="웨딩사진16"></div>
-    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J06827-.jpg" alt="웨딩사진17"></div>
-    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J07534-.jpg" alt="웨딩사진18"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J05851-.jpg" alt="웨딩사진1" loading="lazy"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J06114-.jpg" alt="웨딩사진2" loading="lazy"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J06558-.jpg" alt="웨딩사진3" loading="lazy"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J06601-.jpg" alt="웨딩사진4" loading="lazy"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J06971-.jpg" alt="웨딩사진5" loading="lazy"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J07125-.jpg" alt="웨딩사진6" loading="lazy"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J07282-.jpg" alt="웨딩사진7" loading="lazy"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J07499-.jpg" alt="웨딩사진8" loading="lazy"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J07686-.jpg" alt="웨딩사진9" loading="lazy"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J07795-.jpg" alt="웨딩사진10" loading="lazy"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J07915-.jpg" alt="웨딩사진11" loading="lazy"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J07947-.jpg" alt="웨딩사진12" loading="lazy"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J08238-.jpg" alt="웨딩사진13" loading="lazy"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J08261-.jpg" alt="웨딩사진14" loading="lazy"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J08325-.jpg" alt="웨딩사진15" loading="lazy"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J08418-.jpg" alt="웨딩사진16" loading="lazy"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J06827-.jpg" alt="웨딩사진17" loading="lazy"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J07534-.jpg" alt="웨딩사진18" loading="lazy"></div>
   </div>
 </section>
 
@@ -1106,6 +1118,15 @@ KTX 동대구역 → 서울역 (약 1시간 40분)
   }, { threshold: 0.1 });
   els.forEach(function(el) { io.observe(el); });
 })();
+
+// ── GALLERY LAZY LOAD ──
+document.querySelectorAll('.gallery-item img').forEach(function(img) {
+  if (img.complete) {
+    img.classList.add('loaded');
+  } else {
+    img.addEventListener('load', function() { img.classList.add('loaded'); });
+  }
+});
 
 // ── GALLERY LIGHTBOX ──
 function openLightbox(el) {
