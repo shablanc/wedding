@@ -264,11 +264,11 @@ section {
 }
 .countdown-msg { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 24px; letter-spacing: 0.05em; font-family: 'Gowun Batang', serif; }
 .countdown-grid { display: flex; justify-content: center; gap: 0; }
-.count-item { flex: 1; max-width: 80px; padding: 0 6px; position: relative; }
+.count-item { flex: 1; max-width: 80px; padding: 0 12px; position: relative; }
 .count-item + .count-item::before {
   content: ':';
   position: absolute;
-  left: -2px;
+  left: -6px;
   top: 50%;
   transform: translateY(-60%);
   font-size: 28px;
@@ -468,6 +468,132 @@ section {
   white-space: pre-line;
   border-top: 0.5px solid var(--warm);
 }
+
+/* ── GALLERY ── */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+}
+.gallery-item {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--warm);
+  position: relative;
+}
+.gallery-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  display: block;
+}
+.gallery-item:hover img { transform: scale(1.05); }
+.gallery-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 6px; color: var(--muted);
+  font-size: 11px; font-family: 'Noto Sans KR', sans-serif;
+}
+/* 라이트박스 */
+.lightbox {
+  display: none; position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,0.92);
+  align-items: center; justify-content: center;
+}
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 8px; object-fit: contain; }
+.lightbox-close {
+  position: absolute; top: 20px; right: 20px;
+  font-size: 28px; color: #fff; cursor: pointer;
+  background: none; border: none; line-height: 1;
+}
+
+/* ── GUESTBOOK ── */
+.guestbook-form {
+  background: var(--white);
+  border: 0.5px solid var(--blush);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.gb-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.gb-input, .gb-textarea {
+  width: 100%; padding: 10px 14px;
+  border: 0.5px solid var(--blush);
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: 'Gowun Batang', serif;
+  color: var(--text);
+  background: var(--cream);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.gb-input:focus, .gb-textarea:focus { border-color: var(--rose); }
+.gb-textarea { width: 100%; min-height: 80px; resize: none; margin-bottom: 10px; }
+.gb-submit {
+  width: 100%; padding: 12px;
+  background: var(--rose); color: #fff;
+  border: none; border-radius: 10px;
+  font-size: 14px; font-family: 'Gowun Batang', serif;
+  font-weight: 700; cursor: pointer;
+  transition: background 0.2s;
+}
+.gb-submit:hover { background: var(--deep); }
+.gb-list { display: flex; flex-direction: column; gap: 12px; }
+.gb-card {
+  background: var(--white);
+  border: 0.5px solid var(--blush);
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+.gb-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.gb-name { font-size: 14px; font-weight: 700; color: var(--deep); font-family: 'Gowun Batang', serif; }
+.gb-date { font-size: 11px; color: var(--muted); font-family: 'Noto Sans KR', sans-serif; }
+.gb-msg { font-size: 14px; color: var(--text); line-height: 1.9; font-family: 'Gowun Batang', serif; }
+.gb-empty { text-align: center; font-size: 14px; color: var(--muted); padding: 32px 0; font-family: 'Gowun Batang', serif; }
+.gb-loading { text-align: center; color: var(--muted); font-size: 13px; padding: 20px 0; font-family: 'Noto Sans KR', sans-serif; }
+
+/* ── 마음 전하기 (계좌) ── */
+.account-grid { display: flex; flex-direction: column; gap: 12px; }
+.account-card {
+  background: var(--white);
+  border: 0.5px solid var(--blush);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.account-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 18px; cursor: pointer;
+  user-select: none; -webkit-user-select: none;
+}
+.account-who { display: flex; flex-direction: column; gap: 2px; }
+.account-role { font-size: 10px; letter-spacing: 0.2em; color: var(--rose); font-family: 'Playfair Display', serif; font-style: italic; text-transform: uppercase; }
+.account-name { font-size: 17px; font-weight: 700; color: var(--deep); font-family: 'Gowun Batang', serif; }
+.account-arrow { font-size: 10px; color: var(--muted); transition: transform 0.3s; }
+.account-card.open .account-arrow { transform: rotate(180deg); }
+.account-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.account-card.open .account-body { max-height: 120px; }
+.account-info {
+  padding: 0 18px 18px;
+  border-top: 0.5px solid var(--warm);
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 14px;
+}
+.account-detail { font-size: 13px; color: var(--text); font-family: 'Noto Sans KR', sans-serif; line-height: 1.9; }
+.account-detail span { display: block; font-size: 11px; color: var(--muted); }
+.copy-btn {
+  padding: 8px 16px;
+  background: var(--warm); border: 0.5px solid var(--blush);
+  border-radius: 20px; font-size: 12px;
+  color: var(--deep); cursor: pointer;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400; transition: all 0.2s; white-space: nowrap;
+}
+.copy-btn:hover { background: var(--blush); }
+.copy-btn.copied { background: var(--rose); color: #fff; border-color: var(--rose); }
 
 /* ── FOOTER ── */
 footer {
@@ -793,6 +919,123 @@ KTX 동대구역 → 서울역 (약 1시간 40분)
 </div>
 </div>
 
+<!-- GALLERY -->
+<section aria-label="갤러리">
+  <div class="section-label">Gallery</div>
+  <div class="gallery-grid reveal" id="galleryGrid">
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J05851-.jpg" alt="웨딩사진1"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J06114-.jpg" alt="웨딩사진2"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J06558-.jpg" alt="웨딩사진3"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J06601-.jpg" alt="웨딩사진4"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J06971-.jpg" alt="웨딩사진5"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J07125-.jpg" alt="웨딩사진6"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J07282-.jpg" alt="웨딩사진7"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J07499-.jpg" alt="웨딩사진8"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J07686-.jpg" alt="웨딩사진9"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J07795-.jpg" alt="웨딩사진10"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J07915-.jpg" alt="웨딩사진11"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J07947-.jpg" alt="웨딩사진12"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J08238-.jpg" alt="웨딩사진13"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J08261-.jpg" alt="웨딩사진14"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J08325-.jpg" alt="웨딩사진15"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J08418-.jpg" alt="웨딩사진16"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J06827-.jpg" alt="웨딩사진17"></div>
+    <div class="gallery-item" onclick="openLightbox(this)"><img src="A_J07534-.jpg" alt="웨딩사진18"></div>
+  </div>
+</section>
+
+<!-- 라이트박스 -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<!-- GUESTBOOK -->
+<section aria-label="방명록">
+  <div class="section-label">Guestbook</div>
+  <div class="reveal">
+    <div class="guestbook-form">
+      <div class="gb-row">
+        <input class="gb-input" id="gb-name" placeholder="이름" maxlength="10">
+        <input class="gb-input" id="gb-pass" type="password" placeholder="비밀번호 (삭제용)" maxlength="10">
+      </div>
+      <textarea class="gb-textarea" id="gb-msg" placeholder="축하 메시지를 남겨주세요 🤍" maxlength="200"></textarea>
+      <button class="gb-submit" onclick="submitGuestbook()">메시지 남기기</button>
+    </div>
+    <div class="gb-list" id="gbList">
+      <div class="gb-loading">메시지를 불러오는 중...</div>
+    </div>
+  </div>
+</section>
+
+<!-- 마음 전하기 -->
+<section aria-label="마음 전하기">
+  <div class="section-label">마음 전하기</div>
+  <p style="text-align:center;font-size:14px;color:var(--muted);margin-bottom:24px;font-family:'Gowun Batang',serif;line-height:2;" class="reveal">
+    참석이 어려우신 분들께서는<br>마음만이라도 전해주시면 감사하겠습니다.
+  </p>
+  <div class="account-grid reveal">
+    <div class="account-card">
+      <div class="account-header" onclick="toggleAccount(this)">
+        <div class="account-who">
+          <span class="account-role">신랑</span>
+          <span class="account-name">최현열</span>
+        </div>
+        <span class="account-arrow">▼</span>
+      </div>
+      <div class="account-body">
+        <div class="account-info">
+          <div class="account-detail">
+            <span>국민은행</span>
+            302-0020-4283-24
+          </div>
+          <button class="copy-btn" onclick="copyAccount('302-0020-4283-24', this)">복사</button>
+        </div>
+      </div>
+    </div>
+    <div class="account-card">
+      <div class="account-header" onclick="toggleAccount(this)">
+        <div class="account-who">
+          <span class="account-role">신부</span>
+          <span class="account-name">김지현</span>
+        </div>
+        <span class="account-arrow">▼</span>
+      </div>
+      <div class="account-body">
+        <div class="account-info">
+          <div class="account-detail">
+            <span>신한은행</span>
+            110-502-461715
+          </div>
+          <button class="copy-btn" onclick="copyAccount('110-502-461715', this)">복사</button>
+        </div>
+      </div>
+    </div>
+    <!--
+      ★ 부모님 계좌 추가 방법 (아래 주석 해제 후 계좌번호 입력):
+
+    <div class="account-card">
+      <div class="account-header" onclick="toggleAccount(this)">
+        <div class="account-who">
+          <span class="account-role">신랑 아버지</span>
+          <span class="account-name">최동철</span>
+        </div>
+        <span class="account-arrow">▼</span>
+      </div>
+      <div class="account-body">
+        <div class="account-info">
+          <div class="account-detail">
+            <span>은행명</span>
+            계좌번호
+          </div>
+          <button class="copy-btn" onclick="copyAccount('계좌번호', this)">복사</button>
+        </div>
+      </div>
+    </div>
+    -->
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <span class="footer-heart">❤</span>
@@ -864,10 +1107,144 @@ KTX 동대구역 → 서울역 (약 1시간 40분)
   els.forEach(function(el) { io.observe(el); });
 })();
 
-// ── ACCORDION ──
-function toggleAccordion(header) {
+// ── GALLERY LIGHTBOX ──
+function openLightbox(el) {
+  var img = el.querySelector('img');
+  if (!img) return;
+  document.getElementById('lightboxImg').src = img.src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ── ACCOUNT ACCORDION ──
+function toggleAccount(header) {
   header.parentElement.classList.toggle('open');
 }
+
+// ── COPY ACCOUNT ──
+function copyAccount(num, btn) {
+  var clean = num.replace(/-/g, '');
+  navigator.clipboard.writeText(clean).then(function() {
+    btn.textContent = '복사됨 ✓';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = '복사';
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(function() {
+    var ta = document.createElement('textarea');
+    ta.value = clean;
+    document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = '복사됨 ✓';
+    btn.classList.add('copied');
+    setTimeout(function() { btn.textContent = '복사'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// ── FIREBASE GUESTBOOK ──
+/*
+  ★ Firebase 방명록 설정 방법:
+  1. https://console.firebase.google.com 접속 → 새 프로젝트 생성
+  2. Firestore Database → 만들기 (테스트 모드)
+  3. 프로젝트 설정 → 웹 앱 추가 → 아래 firebaseConfig 값 교체
+  4. 아래 FIREBASE_ENABLED = true 로 변경
+*/
+var FIREBASE_ENABLED = true;
+var firebaseConfig = {
+  apiKey:            "AIzaSyDe5ooOBWXzrxQRJNeLJYUXwepFgLbEU0s",
+  authDomain:        "wedding-67e3c.firebaseapp.com",
+  projectId:         "wedding-67e3c",
+  storageBucket:     "wedding-67e3c.firebasestorage.app",
+  messagingSenderId: "586165826645",
+  appId:             "1:586165826645:web:8684df8538e1186861d0dc"
+};
+
+var db = null;
+
+function initFirebase() {
+  if (!FIREBASE_ENABLED) {
+    renderGuestbook([]);
+    return;
+  }
+  var s1 = document.createElement('script');
+  s1.src = 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js';
+  s1.onload = function() {
+    var s2 = document.createElement('script');
+    s2.src = 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js';
+    s2.onload = function() {
+      firebase.initializeApp(firebaseConfig);
+      db = firebase.firestore();
+      loadGuestbook();
+    };
+    document.head.appendChild(s2);
+  };
+  document.head.appendChild(s1);
+}
+
+function loadGuestbook() {
+  if (!db) { renderGuestbook([]); return; }
+  db.collection('guestbook').orderBy('createdAt', 'desc').limit(30)
+    .onSnapshot(function(snap) {
+      var msgs = [];
+      snap.forEach(function(doc) {
+        msgs.push(Object.assign({ id: doc.id }, doc.data()));
+      });
+      renderGuestbook(msgs);
+    });
+}
+
+function renderGuestbook(msgs) {
+  var list = document.getElementById('gbList');
+  if (!msgs.length) {
+    list.innerHTML = '<div class="gb-empty">첫 번째 축하 메시지를 남겨주세요 🤍</div>';
+    return;
+  }
+  list.innerHTML = msgs.map(function(m) {
+    var d = m.createdAt ? new Date(m.createdAt) : new Date();
+    var dateStr = (d.getMonth()+1) + '/' + d.getDate();
+    return '<div class="gb-card">' +
+      '<div class="gb-card-header">' +
+        '<span class="gb-name">' + escHtml(m.name) + '</span>' +
+        '<span class="gb-date">' + dateStr + '</span>' +
+      '</div>' +
+      '<div class="gb-msg">' + escHtml(m.message) + '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function submitGuestbook() {
+  var name = document.getElementById('gb-name').value.trim();
+  var msg  = document.getElementById('gb-msg').value.trim();
+  var pass = document.getElementById('gb-pass').value.trim();
+  if (!name) { alert('이름을 입력해주세요'); return; }
+  if (!msg)  { alert('메시지를 입력해주세요'); return; }
+  if (!pass) { alert('비밀번호를 입력해주세요'); return; }
+
+  if (!FIREBASE_ENABLED || !db) {
+    alert('Firebase 설정이 필요합니다.\nHTML 파일의 FIREBASE_ENABLED를 true로 변경하고 firebaseConfig를 입력해주세요.');
+    return;
+  }
+  db.collection('guestbook').add({
+    name: name, message: msg, password: pass,
+    createdAt: Date.now()
+  }).then(function() {
+    document.getElementById('gb-name').value = '';
+    document.getElementById('gb-msg').value  = '';
+    document.getElementById('gb-pass').value = '';
+  }).catch(function() { alert('저장 중 오류가 발생했습니다.'); });
+}
+
+initFirebase();
 
 // ── BGM ──
 var bgmPlaying = false;
